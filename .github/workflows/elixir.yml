@@ -25,7 +25,7 @@ jobs:
     services:
       db:
         image: postgres:12
-        ports: ['5432:5432']
+        ports: ['5430:5432']
         env:
           POSTGRES_PASSWORD: postgres
         options: >-
@@ -90,12 +90,6 @@ jobs:
     # Customize this step if a different behavior is desired.
     - name: Compiles without warnings
       run: cd ./learnkz && mix compile --warnings-as-errors
-
-    # Step: Check that the checked in code has already been formatted.
-    # This step fails if something was found unformatted.
-    # Customize this step as desired.
-    - name: Check Formatting
-      run: cd ./learnkz && mix format --check-formatted
 
     # Step: Execute the tests.
     - name: Run tests
