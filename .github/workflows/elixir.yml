@@ -24,10 +24,9 @@ jobs:
     # Additional services can be defined here if required.
     services:
       db:
-        image: postgres:15
-        ports: ['5430:5432']
+        image: postgres:12
+        ports: ['5432:5430']
         env:
-          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         options: >-
           --health-cmd pg_isready
@@ -86,6 +85,9 @@ jobs:
     # the cached version.
     - name: Install dependencies
       run: cd ./learnkz && mix deps.get
+    
+    - name: Setup ecto
+      run: cd ./learnkz && mix ecto.create
 
     # Step: Compile the project treating any warnings as errors.
     # Customize this step if a different behavior is desired.
